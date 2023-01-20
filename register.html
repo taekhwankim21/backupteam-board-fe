@@ -1,1 +1,36 @@
 <!-- 영화등록 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>영화등록하기</title>
+</head>
+<body>
+  <h1 align="center">영화 등록</h1>
+  <a href="index.html">홈으로 돌아가기</a>
+  <a href="movies.html">영화 리스트 보러가기</a> <br/>
+  영화 제목 : <input type="text" id="movie_title" /> <br/>
+  <button onclick="buttonClick()">등록하기</button>
+</body>
+</html>
+<script>
+  // 영화 등록하기
+  const buttonClick = ()=>{
+    fetch("http://localhost:3000/movies",{
+    method: 'POST',
+    headers: {
+      'Content-Type':'application/json',
+    },
+    body: JSON.stringify({
+      movie_title: document.getElementById('movie_title').value,
+      user_id: 1
+    }),
+  }).then(res=>res.json())
+  .then(data=>{
+    location.href = "movies.html"
+  })
+  }
+  
+</script>

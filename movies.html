@@ -1,0 +1,46 @@
+<!-- 무비상세조회 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css"> -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="../backupteam-board-be/app.js"></script>
+  <title>영화리스트</title>
+</head>
+<body>
+  <h1 align="center">영화 리스트</h1>
+  <a href="register.html" >영화 등록</a>
+  <table border="1" width="100%" >
+    <tr align="center">
+      <th>번호</th>
+      <th>제목</th>
+      <th>작성자</th>
+      <th>조회수</th>
+      <th>작성일</th>
+    </tr>
+    <tbody id="movies">
+    </tbody>
+  </table>
+<script>
+  fetch("http://127.0.0.1:3000/movies")
+    .then(res=> res.json())
+    .then(movies=>{
+      const html = movies.map(movie=>{
+        return `
+          <tr>
+            <td>${movie.id}</td>
+            <td><a href="movie.html?id=${movie.id}">${movie.movie_title}</a></td>
+            <td>${movie.name}</td>
+            <td>${movie.hit_count}</td>
+            <td>${movie.created_at}</td>
+          </tr>`
+      })
+      document.getElementById("movies").innerHTML = html.join('')
+    })
+</script>
+</body>
+</html>
