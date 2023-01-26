@@ -22,11 +22,11 @@
     fetch(`http://localhost:3000/movies/${id}`)
     .then(response => response.json())
     .then(movie => {
-      console.log(movie)
-      document.getElementById('movie_title').innerHTML=movie.movie_title
-      document.getElementById('id').innerHTML=movie.id
-      document.getElementById('name').innerHTML=movie.user_id
-      document.getElementById('created_at').innerHTML=movie.created_at
+
+      document.getElementById('movie_title').innerHTML=`${movie.movie_title}`;
+      document.getElementById('id').innerHTML=`${movie.id}`;
+      document.getElementById('name').innerHTML=`${movie.user_id}`;
+      document.getElementById('created_at').innerHTML=`${movie.created_at}`;
     });
 
 </script>
